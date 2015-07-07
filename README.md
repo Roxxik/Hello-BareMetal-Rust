@@ -16,6 +16,7 @@ make install
 
 
 # TODO
+fix the memory leak in main
 factor the boilerplate out into libBareMetal.rs
 get to know rust inline assembly to avoid the intermediate C code
 provide a rust interface in libBareMetal.rs
