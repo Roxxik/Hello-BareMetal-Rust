@@ -18,6 +18,7 @@ make install
 # TODO
 - fix the memory leak in main
 - make sure the target.json is sane
+- do something usefull in start.asm (like providing argc and argv)
 - factor the boilerplate out into libBareMetal.rs
 - get to know rust inline assembly to avoid the intermediate C code
 - provide a rust interface in libBareMetal.rs
