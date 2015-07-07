@@ -51,6 +51,7 @@ pub extern fn main(argc: isize, argv: *const *const u8) -> isize {
             b_output("Failed to get a page\n\0".as_ptr());
         } else {
             b_output("Got a page\n\0".as_ptr());
+            b_output("now type some stuff\n\0".as_ptr());
             let n = b_input(mem, 20);
             //b_output_char('\n' as u8);
             b_output("read chars:\n\0".as_ptr());
