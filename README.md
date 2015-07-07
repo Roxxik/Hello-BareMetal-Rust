@@ -10,6 +10,14 @@ A simple PoC Hello World in Rust for BareMetal OS
 4. make
 
 to get the binary into your bmImage:
-change IMAGEDIR in the Makefile to match the bin folder where the bmfs.image and the bmfs executables are
+change IMAGEDIR in the Makefile to match the bin folder where the bmfs.image and the bmfs executable are
 
 make install
+
+
+# TODO
+factor the boilerplate out into libBareMetal.rs
+get to know rust inline assembly to avoid the intermediate C code
+provide a rust interface in libBareMetal.rs
+
+start a new repo which can run libstd on BareMetal
