@@ -21,7 +21,7 @@ make install
 - do something usefull in start.asm (like providing argc and argv)
 - factor the boilerplate out into libBareMetal.rs
 - get to know rust inline assembly to avoid the intermediate C code
-- provide a rust interface in libBareMetal.rs
+- provide a safe rust interface in libBareMetal.rs
 
 eventually sometimes
 start a new repo which can run libstd on BareMetal
