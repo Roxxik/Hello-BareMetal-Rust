@@ -35,9 +35,7 @@ If i miss some dependencies please tell me so i can include them for everyone el
 
 # TODO
 - make sure the target.json is sane
-- do something usefull in start.asm (like providing argc and argv)
 - get to know rust inline assembly to avoid the intermediate C code
-- provide a safe rust interface in libBareMetal.rs
 
 eventually sometimes
 start a new repo which can run libstd on BareMetal
