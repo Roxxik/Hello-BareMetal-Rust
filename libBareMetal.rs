@@ -32,6 +32,9 @@ extern "C" {
     fn b_file_open(name: *const u8) -> u64;
     fn b_file_close(hdl: u64);
     fn b_file_read(hdl: u64, buf: *mut u8, count: u64) -> u64;
+    pub fn malloc(size: u64) -> *mut u8;
+    pub fn realloc(ptr: *mut u8, size: u64) -> *mut u8;
+    pub fn free(ptr: *mut u8);
 }
 
 
@@ -48,8 +51,16 @@ pub fn output(s: &str) {
     }
 }
 
-pub fn input_key() -> char {
+pub unsafe fn input(ptr: *mut u8, size: u64) -> u64 {
+    b_input(ptr,size)
+}
+
+pub fn input_key() -> u8 {
     unsafe{
-        b_input_key() as char
+        let mut c = 0;
+        while c == 0 {
+            c = b_input_key();
+        }
+        c
     }
 }

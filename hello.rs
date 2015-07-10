@@ -23,5 +23,12 @@ mod libBareMetal;
 #[no_mangle]
 #[allow(private_no_mangle_fns)]
 fn main() {
-    libBareMetal::output("Hello\n");
+    libBareMetal::output("type something\n");
+    unsafe{
+        let buf = libBareMetal::malloc(21);
+        let _ = libBareMetal::input(buf,20);
+        *buf.offset(20) = 0;
+        libBareMetal::output(core::str::from_utf8_unchecked(core::slice::from_raw_parts(buf,20)));
+        libBareMetal::free(buf);
+    }
 }

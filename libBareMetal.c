@@ -26,17 +26,17 @@
 // =============================================================================
 
 
-extern void b_output(const char *str)
+void b_output(const char *str)
 {
 	asm volatile ("call *0x00100010" : : "S"(str)); // Make sure source register (RSI) has the string address (str)
 }
 
-extern void b_output_chars(const char *str, unsigned long nbr)
+void b_output_chars(const char *str, unsigned long nbr)
 {
 	asm volatile ("call *0x00100018" : : "S"(str), "c"(nbr));
 }
 
-extern void b_output_char(char c) {
+void b_output_char(char c) {
 	b_output_chars(&c,1);
 }
 

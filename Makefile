@@ -8,7 +8,7 @@ CC=clang
 TARGET = target.json
 LINKSCRIPT = app.ld
 
-RUSTFLAGS = -g -O --cfg arch__$(ARCH) --target=$(TARGET) -Z no-landing-pads
+RUSTFLAGS = -g -O --cfg baremetalos --target=$(TARGET) -Z no-landing-pads
 
 LINKFLAGS = -T $(LINKSCRIPT) --gc-sections -z max-page-size=0x20000
 
@@ -31,9 +31,12 @@ START=start.o
 LIBBAREMETALSRC=libBareMetal.c
 LIBBAREMETAL=libBareMetal.o
 
+LIBALLOCSRC=liballoc.c
+LIBALLOC=liballoc.o
+
 SRCS=$(wildcard *.rs)
 
-OBJS=start.o hello.o libBareMetal.o $(RLIBC) $(LIBCORE)
+OBJS=$(START) $(MAIN) $(LIBBAREMETAL) $(LIBALLOC) $(RLIBC) $(LIBCORE)
 
 BIN=hellors.app
 
@@ -68,6 +71,9 @@ $(MAIN): $(MAINSRC) $(LIBCORE) $(SRCS) $(TARGET)
 
 $(LIBBAREMETAL): $(LIBBAREMETALSRC)
 	$(CC) $(CFLAGS) -o $@ $(LIBBAREMETALSRC)
+
+$(LIBALLOC): $(LIBALLOCSRC)
+	$(CC) $(CFLAGS) -o $@ $(LIBALLOCSRC)
 
 $(START): $(STARTSRC)
 	$(AS) -o $@ $(ASFLAGS) $(STARTSRC)
