@@ -3,7 +3,7 @@ A simple PoC Hello World in Rust for BareMetal OS
 
 # How to build
 1. get libcore
-  - cp -rf path/to/rust/ .
+  - cp -rf path/to/rust/src/libcore .
 2. get rlibc
   - git clone https://github.com/rust-lang/rlibc.git
 3. make
