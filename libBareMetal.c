@@ -26,22 +26,24 @@
 // =============================================================================
 
 
-void b_output(const char *str)
+extern void b_output(const char *str)
 {
 	asm volatile ("call *0x00100010" : : "S"(str)); // Make sure source register (RSI) has the string address (str)
 }
 
-void b_output_chars(const char *str, unsigned long nbr)
+extern void b_output_chars(const char *str, unsigned long nbr)
 {
 	asm volatile ("call *0x00100018" : : "S"(str), "c"(nbr));
 }
 
+extern void b_output_char(char c) {
+	b_output_chars(&c,1);
+}
 
 unsigned long b_input(unsigned char *str, unsigned long nbr)
 {
 	unsigned long len;
 	asm volatile ("call *0x00100020" : "=c" (len) : "c"(nbr), "D"(str));
-	b_output("\n");
 	return len;
 }
 
@@ -85,11 +87,11 @@ void *b_mem_allocate(unsigned long nbr)
 	return mem;
 }
 
-unsigned long b_mem_release(unsigned long *mem, unsigned long nbr)
+unsigned long b_mem_release(void *mem, unsigned long nbr)
 {
-	unsigned long tlong;
-	asm volatile ("call *0x00100058" : "=c"(tlong) : "a"(*(mem)), "c"(nbr));
-	return tlong;
+	unsigned long out;
+	asm volatile ("call *0x00100058" : "=c"(out) : "a"(mem), "c"(nbr));
+	return out;
 }
 
 
@@ -113,11 +115,9 @@ unsigned long b_file_open(const unsigned char *name)
 	return tlong;
 }
 
-unsigned long b_file_close(unsigned long handle)
+void b_file_close(unsigned long handle)
 {
-	unsigned long tlong = 0;
 	asm volatile ("call *0x00100078" : : "a"(handle));
-	return tlong;
 }
 
 unsigned long b_file_read(unsigned long handle, void *buf, unsigned int count)
@@ -127,7 +127,7 @@ unsigned long b_file_read(unsigned long handle, void *buf, unsigned int count)
 	return tlong;
 }
 
-unsigned long b_file_write(unsigned long handle, const void *buf, unsigned int count)
+unsigned long b_file_write(unsigned long handle, const void *buf, unsigned long count)
 {
 	unsigned long tlong;
 	asm volatile ("call *0x00100088" : "=c"(tlong) : "a"(handle), "S"(buf), "c"(count));

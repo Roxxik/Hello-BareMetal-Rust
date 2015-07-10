@@ -14,7 +14,7 @@ change IMAGEDIR in the Makefile to match the bin folder where the bmfs.image and
 make install
 
 
-I built this with 
+I built this with
 
     $ rustc --version --verbose
     rustc 1.3.0-nightly (2671e8cee 2015-06-28)
@@ -34,10 +34,8 @@ If i miss some dependencies please tell me so i can include them for everyone el
 
 
 # TODO
-- fix the memory leak in main
 - make sure the target.json is sane
 - do something usefull in start.asm (like providing argc and argv)
-- factor the boilerplate out into libBareMetal.rs
 - get to know rust inline assembly to avoid the intermediate C code
 - provide a safe rust interface in libBareMetal.rs
 

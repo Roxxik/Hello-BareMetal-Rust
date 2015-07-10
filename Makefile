@@ -3,7 +3,7 @@ ARCH = x86_64
 RUSTC = rustc
 LD=ld
 AS=nasm
-CC=gcc
+CC=clang
 
 TARGET = target.json
 LINKSCRIPT = app.ld
@@ -14,7 +14,7 @@ LINKFLAGS = -T $(LINKSCRIPT) --gc-sections -z max-page-size=0x20000
 
 ASFLAGS=-f elf64
 
-CFLAGS = -g -O -c -m64 -nostdlib -nostartfiles -nodefaultlibs -fomit-frame-pointer -mno-red-zone
+CFLAGS = -g -O -c -m64 -nostdlib -fomit-frame-pointer -mno-red-zone
 
 LIBCORESRC=libcore/lib.rs
 LIBCORE=libcore.rlib
@@ -30,6 +30,8 @@ START=start.o
 
 LIBBAREMETALSRC=libBareMetal.c
 LIBBAREMETAL=libBareMetal.o
+
+SRCS=$(wildcard *.rs)
 
 OBJS=start.o hello.o libBareMetal.o $(RLIBC) $(LIBCORE)
 
@@ -61,7 +63,7 @@ $(LIBCORE): $(LIBCORESRC) $(TARGET)
 $(RLIBC): $(RLIBCSRC) $(LIBCORE) $(TARGET)
 	$(RUSTC) $(RUSTFLAGS) -o $@ --crate-type=lib --emit=link --extern core=$(LIBCORE) $(RLIBCSRC)
 
-$(MAIN): $(MAINSRC) $(LIBCORE) $(TARGET)
+$(MAIN): $(MAINSRC) $(LIBCORE) $(SRCS) $(TARGET)
 	$(RUSTC) $(RUSTFLAGS) -o $@ --emit=obj --extern core=$(LIBCORE) $(MAINSRC)
 
 $(LIBBAREMETAL): $(LIBBAREMETALSRC)
