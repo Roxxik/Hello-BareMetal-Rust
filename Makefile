@@ -35,12 +35,12 @@ OBJS=start.o hello.o libBareMetal.o $(RLIBC) $(LIBCORE)
 
 BIN=hellors.app
 
-IMAGEDIR=../bin/
+IMAGEDIR=../BareMetal/bin/
 BMFS=$(IMAGEDIR)bmfs
 IMAGE=$(IMAGEDIR)bmfs.image
 
 
-.PHONY: all run debug clean install run
+.PHONY: all clean install
 
 all: $(BIN)
 
