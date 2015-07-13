@@ -1,6 +1,9 @@
 # Hello-BareMetal-Rust
 A simple PoC Hello World in Rust for BareMetal OS
 
+It is possible (by liballoc) to (unsafely) allocate chunks of memory, smaller than a whole page
+Next thing to do is porting libstd/ rusts liballoc
+
 # How to build
 1. get libcore (same version as rustc)
   - cp -rf path/to/rust/src/libcore .
