@@ -3,7 +3,7 @@ ARCH = x86_64
 RUSTC = rustc
 LD=ld
 AS=nasm
-CC=clang
+CC=gcc
 
 TARGET = target.json
 LINKSCRIPT = app.ld
