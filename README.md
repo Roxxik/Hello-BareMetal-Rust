@@ -18,6 +18,7 @@ change IMAGEDIR in the Makefile to match the bin folder where the bmfs.image and
 make install
 
 
+
 I think this can build on any Linux with a gnu toolchain and some rust nightly
 
 If i miss some dependencies please tell me so i can include them for everyone else trying to play with rust on BareMetal
