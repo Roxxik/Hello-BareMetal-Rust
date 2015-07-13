@@ -2,7 +2,7 @@
 A simple PoC Hello World in Rust for BareMetal OS
 
 # How to build
-1. get libcore
+1. get libcore (same version as rustc)
   - cp -rf path/to/rust/src/libcore .
 2. get rlibc
   - git clone https://github.com/rust-lang/rlibc.git
