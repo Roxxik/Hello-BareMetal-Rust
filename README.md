@@ -1,7 +1,8 @@
 # Hello-BareMetal-Rust
 A simple PoC Hello World in Rust for BareMetal OS
 
-It is possible (by liballoc) to (unsafely) allocate chunks of memory, smaller than a whole page
+It is possible (by liballoc) to (unsafely) allocate chunks of memory smaller than a whole page
+
 Next thing to do is porting libstd/ rusts liballoc
 
 # How to build
